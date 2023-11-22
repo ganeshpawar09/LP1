@@ -1,0 +1,34 @@
+header
+
+#ifndef _CALCULATORDLL_h_
+#define _CALCULATORDLL_h_
+#ifdef CALCULATORDLL_EXPORTS 
+#define CALCULATORDLL_API __declspec(dllexport) 
+#else 
+#define CALCULATORDLL_API __declspec(dllimport) 
+#endif
+CALCULATORDLL_API int Addition(int x,int y);
+#endif
+
+.c
+#ifndef _CALCULATORDLL_c_
+#define _CALCULATORDLL_c_
+#include "CalculatorDLL.h"
+int Addition(int x,int y)
+{
+int z;
+z=x+y;
+return z;
+}
+#endif
+
+.c
+#include<stdio.h>
+#include "CalculatorDLL\CalculatorDLL.h"
+int main()
+{
+int a;
+a = Addition(10,5);
+printf("Addition=%d\n",a);
+return 0;
+}
